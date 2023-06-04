@@ -150,25 +150,36 @@ h1 {
   height: 30px;
 }
 
+.contact-information {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .contact-map {
-  position: absolute;
-  right: 75px;
+  padding-left: 50px;
 }
 
 .contact-inputs {
   color: black;
-  position: absolute;
-  padding-top: 80px;
-  margin-left: 350px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10%;
 }
 
-.contact-input-item {
-  margin-left: 50px;
-}
 .contact-input-item label {
   display: block;
 }
 
+@media screen and (max-width: 1200px) {
+  .contact-information {
+    flex-direction: column;
+  }
+  .contact-map {
+    padding: 10px;
+    width: 100%;
+  }
+}
 .contact-input-field {
   background-color: black;
   color: rgb(255, 50, 50);
