@@ -116,15 +116,11 @@ h1 {
   cursor: pointer;
 }
 
-.member-items {
-  justify-content: center;
-}
-.member-items a {
-  display: block;
-}
-.member-items div {
+.member-item {
   display: inline-block;
-  padding: 47px;
+}
+.member-item a {
+  display: block;
 }
 
 .services-item {

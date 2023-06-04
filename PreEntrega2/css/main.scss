@@ -137,15 +137,11 @@ h1 {
     }
 }
 
-.member-items {
-    justify-content: center;
+.member-item {
+    display: inline-block;
+
     a {
         display: block;
-    }
-
-    div {
-        display: inline-block;
-        padding: 47px;
     }
 }
 
