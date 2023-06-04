@@ -116,6 +116,9 @@ h1 {
   cursor: pointer;
 }
 
+.member-items {
+  justify-content: center;
+}
 .member-items a {
   display: block;
 }
@@ -125,20 +128,19 @@ h1 {
 }
 
 .services-list {
-  list-style: none;
-  margin-left: 30%;
+  display: inline-block;
+  margin-left: 15%;
 }
 
 .services-item {
-  padding-bottom: 20px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: row;
 }
-.services-item label {
-  position: absolute;
-}
-.services-item a {
-  position: absolute;
-  margin-top: 65px;
-  padding-right: 150px;
+.services-item div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contact-map {
@@ -176,5 +178,14 @@ h1 {
   .header-format {
     flex-direction: column;
     display: grid;
+  }
+}
+@media screen and (max-width: 900px) {
+  .services-item {
+    flex-direction: column;
+  }
+  .services-item img {
+    width: 120px;
+    height: 120px;
   }
 }/*# sourceMappingURL=main.css.map */
