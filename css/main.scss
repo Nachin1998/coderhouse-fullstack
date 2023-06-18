@@ -140,6 +140,12 @@ h1 {
 .member-item {
     display: inline-block;
 
+    padding-bottom: 50px;
+    h2 {
+        font-size: 25px;
+        display: block;
+    }
+
     a {
         display: block;
     }
