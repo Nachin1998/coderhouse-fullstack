@@ -1,0 +1,26 @@
+@import "_colors.scss";
+
+.about-description {
+    margin: auto;
+    width: 50%;
+    padding-bottom: 70px;
+    text-align: center;
+}
+
+.member-item {
+    display: inline-block;
+    background-color: $genericObjectsBackgroundColor;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    h2 {
+        font-size: 25px;
+        display: block;
+        color: $baseStyleColor;
+    }
+    
+    a {
+        display: block;
+        color: $genericTextStyle !important;
+    }
+}

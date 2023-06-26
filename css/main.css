@@ -45,6 +45,21 @@ h1 {
   padding-right: 15px;
 }
 
+.default-button {
+  border-color: rgb(255, 50, 50);
+  background-color: black;
+  color: rgb(255, 50, 50);
+  cursor: pointer;
+}
+
+.center-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 20%;
+}
+
 .social-media-icon-items {
   color: rgb(255, 50, 50);
   display: flex;
@@ -57,58 +72,6 @@ h1 {
   height: 50px;
   margin: 3%;
   cursor: pointer;
-}
-
-.language-popup {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.description {
-  margin: auto;
-  width: 50%;
-  padding-bottom: 70px;
-  text-align: center;
-}
-
-.center-logo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  width: 20%;
-}
-
-.contact-icon-items {
-  color: rgb(255, 50, 50);
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  padding-top: 10px;
-}
-.contact-icon-items li img {
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-  margin: 20px;
-  cursor: pointer;
-}
-
-.member-item {
-  display: inline-block;
-  background-color: black;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-.member-item h2 {
-  font-size: 25px;
-  display: block;
-  color: rgb(255, 50, 50);
-}
-.member-item a {
-  display: block;
-  color: rgb(163, 32, 32) !important;
 }
 
 .services-item {
@@ -130,6 +93,38 @@ h1 {
 .services-item div button {
   width: 60px;
   height: 30px;
+}
+
+@media screen and (max-width: 900px) {
+  .services-item {
+    flex-direction: column;
+  }
+  .services-item img {
+    width: 120px;
+    height: 120px;
+  }
+}
+.about-description {
+  margin: auto;
+  width: 50%;
+  padding-bottom: 70px;
+  text-align: center;
+}
+
+.member-item {
+  display: inline-block;
+  background-color: black;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.member-item h2 {
+  font-size: 25px;
+  display: block;
+  color: rgb(255, 50, 50);
+}
+.member-item a {
+  display: block;
+  color: rgb(163, 32, 32) !important;
 }
 
 .contact-information {
@@ -154,6 +149,26 @@ h1 {
   display: block;
 }
 
+.contact-icon-items {
+  color: rgb(255, 50, 50);
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-top: 10px;
+}
+.contact-icon-items li img {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.contact-input-field {
+  background-color: black;
+  color: rgb(255, 50, 50);
+}
+
 @media screen and (max-width: 1200px) {
   .contact-information {
     flex-direction: column;
@@ -161,32 +176,5 @@ h1 {
   .contact-map {
     padding: 10px;
     width: 100%;
-  }
-}
-.contact-input-field {
-  background-color: black;
-  color: rgb(255, 50, 50);
-}
-
-.default-button {
-  border-color: rgb(255, 50, 50);
-  background-color: black;
-  color: rgb(255, 50, 50);
-  cursor: pointer;
-}
-
-@media screen and (max-width: 700px) {
-  .header-format {
-    flex-direction: column;
-    display: grid;
-  }
-}
-@media screen and (max-width: 900px) {
-  .services-item {
-    flex-direction: column;
-  }
-  .services-item img {
-    width: 120px;
-    height: 120px;
   }
 }/*# sourceMappingURL=main.css.map */
