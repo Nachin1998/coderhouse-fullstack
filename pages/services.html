@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name = "description" content="Firepunch Studios provides game development services to clients all around the globe">
     <meta name = "keywords" content="GAME DEVELOPMENT, GAME DESIGN, QA">
-    <link rel="stylesheet" href="../css/bootstrap/bootstrap-styles.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap-styles.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="page icon" href="../resources/images/FirePunchLogo.png" type="image/xicon">
 
@@ -20,21 +20,45 @@
 
 <body>
     <header>
-        <img class="main-logo" src="../resources/images/FirePunchLogo.png" alt="Logo">
-        
-        <nav class="header-format">
-            <a href="../index.html">Home</a>
-            <a href="services.html">Services</a>
-            <a href="about-us.html">About us</a>
-            <a href="contact-us.html">Contact us</a>
-        </nav>
-        
-        <div class="language-popup">
-            <a for="Language">Language:</a>
-            <select name="Language" id="Language">
-                <option value="EN">English</option>
-                <option value="ES">Español</option>
-            </select>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img class="main-logo" src="../resources/images/FirePunchLogo.png" alt="Logo">
+                </div>
+                <div class="col">
+                    <nav class="navbar navbar-expand-lg">
+                        <div class="navbar-collapse justify-content-center">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link header-text" href="../index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link header-text" href="services.html">Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link header-text" href="about-us.html">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link header-text" href="contact-us.html">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <a for="Language">Language:</a>
+                                <select name="Language" id="Language">
+                                    <option value="EN">English</option>
+                                    <option value="ES">Español</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
