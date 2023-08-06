@@ -73,7 +73,7 @@ if (response)
     let info = "Great! You are now part of the team! \n";
     currentEmployees.unshift(new Employee(namePrompt.response, "Junior IT Employee"));
     for (const item of currentEmployees) {
-        info += item.name + ": " + item.currentJob + "\n";
+        info += item.GetJobInformation();
     }
     alert(info);
 }

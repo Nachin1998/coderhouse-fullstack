@@ -3,4 +3,8 @@ export class Employee{
         this.name = name;
         this.currentJob =  currentJob;
     }
+
+    GetJobInformation(){
+        return this.name + ": " + this.currentJob + "\n";
+    }
 }
