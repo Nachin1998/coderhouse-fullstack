@@ -52,8 +52,8 @@ function GenerateFinalMessage(prompts) {
     return information;
 }
 
-let currentEmployees = GenerateEmplyees();
-let prompts = GeneratePrompts();
+const currentEmployees = GenerateEmplyees();
+const prompts = GeneratePrompts();
 const namePrompt = prompts[0];
 
 for (const promptItem of prompts) {
