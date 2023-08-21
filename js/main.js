@@ -6,6 +6,8 @@ import {
     Employee
 } from './Employee.js';
 
+import promptsData from "./employees.json" assert {type: "json"};
+
 function GeneratePrompts() {
     const prompts = new Array();
     prompts.push(new EmployeePrompt("Whats your name?", "Name"));
@@ -42,42 +44,91 @@ function GenerateFinalMessage(prompts) {
     const endLine = "\n";
     let information = "Information:" + endLine;
 
-    for (let i = 0; i < prompts.length; i++) {
-        information += prompts[i].GetInformationText();
+    prompts.forEach(prompt => {
+        information += prompt.GetInformationText();
         information += endLine;
-    }
-    
+    });
+
     information += endLine;
     information += "Thank you!";
     return information;
 }
 
-const currentEmployees = GenerateEmplyees();
-const prompts = GeneratePrompts();
-const namePrompt = prompts[0];
-
-for (const promptItem of prompts) {
-    promptItem.SetResponse(prompt(promptItem.prompt));
+/* for (let index = 0; index < promptsData.length; index++) {
+    alert(promptsData[i].prompt);
+    alert(promptsData[i].promptId);
 }
 
-if (CheckForNameSimilarities(currentEmployees, prompts)) {
-    alert("What a coincidence, we got someone working with your name already!");
-}
+fetch("./employees.json")
+.then(response => {
+   return response.json();
+})
+.then(data => console.log(data)); */
 
-alert(GenerateFinalMessage(prompts));
+console.log(promptsData);
 
-const response = confirm("Would you like to apply for the position?");
+const userKey = "user";
+const acceptedJobKey = "acceptedJob";
 
-if (response)
+const user = localStorage.getItem(userKey);
+
+if (user != null)
 {
-    let info = "Great! You are now part of the team! \n";
-    currentEmployees.unshift(new Employee(namePrompt.response, "Junior IT Employee"));
-    for (const item of currentEmployees) {
-        info += item.GetJobInformation();
-    }
-    alert(info);
+    alert("welcome back " + user + "!");
 }
 else
 {
-    alert("What a shame. Feel free to contact us if you change your mind!");
+    const name = prompt("Please input your name");
+    localStorage.setItem(userKey, name);
+    alert("welcome " + name + "!");
+}
+
+const isEmployee = localStorage.getItem(acceptedJobKey);
+
+if (isEmployee)
+{
+    alert("Glad you are enjoying you time at the job!");
+}
+else
+{
+    const currentEmployees = GenerateEmplyees();
+    const prompts = GeneratePrompts();
+    const namePrompt = prompts[0];
+    
+    prompts.forEach(element => {
+        element.SetResponse(prompt(element.prompt));
+    })
+
+    if (CheckForNameSimilarities(currentEmployees, prompts)) {
+        alert("What a coincidence, we got someone working with your name already!");
+    }
+    
+    alert(GenerateFinalMessage(prompts));
+    
+    const response = confirm("Would you like to apply for the position?");
+    
+    if (response)
+    {
+        localStorage.setItem(acceptedJobKey, response);
+        let info = "Great! You are now part of the team! \n";
+        currentEmployees.unshift(new Employee(namePrompt.response, "Junior IT Employee"));
+        currentEmployees.forEach(employee => {
+            info += employee.GetJobInformation();
+        });
+        alert(info);
+    }
+    else
+    {
+        alert("What a shame. Feel free to contact us if you change your mind!");
+    }
+}
+
+const text = document.getElementsByClassName("header-text");
+
+for (let i = 0; i < text.length; i++) {
+    const element = text[i];
+    element.addEventListener("click", (eventData) => {
+    
+        alert(element.text);
+    });
 }

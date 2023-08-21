@@ -45,13 +45,6 @@ h1 {
   padding-right: 15px;
 }
 
-.default-button {
-  border-color: rgb(255, 50, 50);
-  background-color: black;
-  color: rgb(255, 50, 50);
-  cursor: pointer;
-}
-
 .center-logo {
   display: block;
   margin-left: auto;
