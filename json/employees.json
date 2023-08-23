@@ -1,0 +1,20 @@
+{
+    "employees":[
+        {
+            "employee": "Ignacio",
+            "response": "CEO"
+        },
+        {
+            "employee": "Luciano",
+            "response": "Lead IT"
+        },
+        {
+            "employee": "Nick",
+            "response": "QA"
+        },
+        {
+            "employee": "Roma",
+            "response": "Lead Python Dev"
+        }
+    ]
+}

@@ -1,30 +1,46 @@
-import {
-    EmployeePrompt
-} from './EmployeePrompt.js';
+'use strict';
 
 import {
     Employee
 } from './Employee.js';
 
-import promptsData from "./employees.json" assert {type: "json"};
+import {
+    EmployeePrompt
+} from './EmployeePrompt.js';
 
-function GeneratePrompts() {
+async function GeneratePrompts() {
+    const response = await fetch("./json/prompts.json");
+    if (!response.ok) {
+        console.error("Failed to load prompts");
+        return null;
+    }
+    
+    const data = await response.json();
+
     const prompts = new Array();
-    prompts.push(new EmployeePrompt("Whats your name?", "Name"));
-    prompts.push(new EmployeePrompt("How long have you known the company?", "Company Knowledge"));
-    prompts.push(new EmployeePrompt("Whats your desired salary?", "Desired Salary"));
-    prompts.push(new EmployeePrompt("Whats your ID number?", "ID Number"));
-    prompts.push(new EmployeePrompt("Whats position would you like in the company?", "Desired Position"));
-    prompts.push(new EmployeePrompt("Whats your favourite dessert?", "Dessert"));
+    for (let index = 0; index < data.prompts.length; index++) {
+        const element = data.prompts[index];
+        prompts.push(new EmployeePrompt(element.prompt, element.promptId));
+    }
+
     return prompts;
 }
 
-function GenerateEmplyees() {
-    let employees = new Array();
-    employees.push(new Employee("Ignacio", "CEO"));
-    employees.push(new Employee("Luciano", "Lead IT"));
-    employees.push(new Employee("Nick", "QA"));
-    employees.push(new Employee("Roma", "Lead Python Dev"));
+async function GenerateEmployees() {
+    const response = await fetch("./json/employees.json");
+    if (!response.ok) {
+        console.error("Failed to load employees");
+        return null;
+    }
+
+    const data = await response.json();
+
+    const employees = new Array();
+    for (let index = 0; index < data.employees.length; index++) {
+        const element = data.employees[index];
+        employees.push(new Employee(element.name, element.currentJob));
+    }
+
     return employees;
 }
 
@@ -54,35 +70,24 @@ function GenerateFinalMessage(prompts) {
     return information;
 }
 
-/* for (let index = 0; index < promptsData.length; index++) {
-    alert(promptsData[i].prompt);
-    alert(promptsData[i].promptId);
+function GreetClient() {
+    const userKey = "user";
+
+    const user = localStorage.getItem(userKey);
+
+    if (user != null) {
+        alert("welcome back " + user + "!");
+    }
+    else {
+        const name = prompt("Please input your name");
+        localStorage.setItem(userKey, name);
+        alert("welcome " + name + "!");
+    }
 }
 
-fetch("./employees.json")
-.then(response => {
-   return response.json();
-})
-.then(data => console.log(data)); */
+GreetClient();
 
-console.log(promptsData);
-
-const userKey = "user";
 const acceptedJobKey = "acceptedJob";
-
-const user = localStorage.getItem(userKey);
-
-if (user != null)
-{
-    alert("welcome back " + user + "!");
-}
-else
-{
-    const name = prompt("Please input your name");
-    localStorage.setItem(userKey, name);
-    alert("welcome " + name + "!");
-}
-
 const isEmployee = localStorage.getItem(acceptedJobKey);
 
 if (isEmployee)
@@ -91,8 +96,8 @@ if (isEmployee)
 }
 else
 {
-    const currentEmployees = GenerateEmplyees();
-    const prompts = GeneratePrompts();
+    const currentEmployees = await GenerateEmployees();
+    const prompts = await GeneratePrompts();
     const namePrompt = prompts[0];
     
     prompts.forEach(element => {
