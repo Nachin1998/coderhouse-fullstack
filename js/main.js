@@ -5,10 +5,10 @@ import {
 } from './Employee.js';
 
 import {
-    EmployeePrompt
-} from './EmployeePrompt.js';
+    InterviewPrompt
+} from './InterviewPrompt.js';
 
-async function GeneratePrompts() {
+async function LoadPrompts() {
     const response = await fetch("./json/prompts.json");
     if (!response.ok) {
         console.error("Failed to load prompts");
@@ -20,13 +20,13 @@ async function GeneratePrompts() {
     const prompts = new Array();
     for (let index = 0; index < data.prompts.length; index++) {
         const element = data.prompts[index];
-        prompts.push(new EmployeePrompt(element.prompt, element.promptId));
+        prompts.push(new InterviewPrompt(element.prompt, element.promptId));
     }
 
     return prompts;
 }
 
-async function GenerateEmployees() {
+async function LoadEmployees() {
     const response = await fetch("./json/employees.json");
     if (!response.ok) {
         console.error("Failed to load employees");
@@ -67,7 +67,7 @@ function GenerateFinalMessage(prompts) {
 
     information += endLine;
     information += "Thank you!";
-    return information;
+    alert(information);
 }
 
 function GreetClient() {
@@ -79,25 +79,40 @@ function GreetClient() {
         alert("welcome back " + user + "!");
     }
     else {
-        const name = prompt("Please input your name");
+        const name = prompt("Please input your nickname.");
         localStorage.setItem(userKey, name);
         alert("welcome " + name + "!");
     }
 }
 
-GreetClient();
+function IsEmployee(){
+    const acceptedJobKey = "acceptedJob";
+    const isEmployee = localStorage.getItem(acceptedJobKey);
 
-const acceptedJobKey = "acceptedJob";
-const isEmployee = localStorage.getItem(acceptedJobKey);
-
-if (isEmployee)
-{
-    alert("Glad you are enjoying you time at the job!");
+    return isEmployee;
 }
-else
-{
-    const currentEmployees = await GenerateEmployees();
-    const prompts = await GeneratePrompts();
+
+function DoesClientWantToApply(){
+    return confirm("Would you like to apply for the position?");
+}
+
+function HireClient(clientName, currentEmployees) {
+    const acceptedJobKey = "acceptedJob";
+    localStorage.setItem(acceptedJobKey, true);
+
+    let info = "Great! You are now part of the team! \n";
+
+    currentEmployees.unshift(new Employee(clientName, "Junior IT Employee"));
+    currentEmployees.forEach(employee => {
+        info += employee.GetJobInformation();
+    });
+
+    return info;
+}
+
+async function HandleMainFlow(){
+    const currentEmployees = await LoadEmployees();
+    const prompts = await LoadPrompts();
     const namePrompt = prompts[0];
     
     prompts.forEach(element => {
@@ -108,18 +123,11 @@ else
         alert("What a coincidence, we got someone working with your name already!");
     }
     
-    alert(GenerateFinalMessage(prompts));
+    GenerateFinalMessage(prompts);
     
-    const response = confirm("Would you like to apply for the position?");
-    
-    if (response)
+    if (DoesClientWantToApply())
     {
-        localStorage.setItem(acceptedJobKey, response);
-        let info = "Great! You are now part of the team! \n";
-        currentEmployees.unshift(new Employee(namePrompt.response, "Junior IT Employee"));
-        currentEmployees.forEach(employee => {
-            info += employee.GetJobInformation();
-        });
+        const info = HireClient(namePrompt.response, currentEmployees);
         alert(info);
     }
     else
@@ -128,12 +136,31 @@ else
     }
 }
 
+GreetClient();
+
+if (IsEmployee())
+{
+    alert("Glad you are enjoying you time at the job!");
+}
+else
+{
+    HandleMainFlow();
+}
+
 const text = document.getElementsByClassName("header-text");
 
 for (let i = 0; i < text.length; i++) {
     const element = text[i];
     element.addEventListener("click", (eventData) => {
-    
-        alert(element.text);
+        alert("You have been cursed by the 'i dont know what button to use this event on' curse. All your data has been erased.");
+        localStorage.clear();
+    });
+
+    element.addEventListener("mouseover", (eventData) => {
+        console.log(element.text + " down");
+    });
+
+    element.addEventListener("mouseout", (eventData) => {
+        console.log(element.text + " out");
     });
 }

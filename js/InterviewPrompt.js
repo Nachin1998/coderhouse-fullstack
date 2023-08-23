@@ -1,4 +1,4 @@
-export class EmployeePrompt{
+export class InterviewPrompt{
     constructor(prompt, promptId) {
         this.prompt = prompt;
         this.promptId = promptId;
